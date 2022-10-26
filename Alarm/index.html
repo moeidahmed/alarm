@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Set Alarm</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      box-shadow: 0 12px 24px rgb(19, 17, 17);
+    }
+    .container h1 {
+      text-align: center;
+      color: white;
+    }
+    form {
+      background-color: white;
+      padding: 30px;
+    }
+    form .input-group {
+      margin-bottom: 15px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    form input {
+      padding: 12px 20px;
+      width: 100%;
+      border: 1px solid #ccc;
+    }
+    .show {
+      border: 1px solid black;
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      text-align: center;
+    }
+    .submit-btn {
+      width: 100%;
+      border: none;
+      background: rgb(33, 22, 115);
+      font-size: 18px;
+      color: white;
+      border-radius: 3px;
+      padding: 20px;
+      text-align: center;
+    }
+    .img {
+      font-size: small;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <form id="form">
+        <div class="input-group">
+          <label for="uname">Enter Your Name:</label>
+          <input id="uname" />
+        </div>
+        <div class="input-group">
+          <label for="alarm">Delay:</label>
+          <input
+            type="number"
+            id="alarm"
+            placeholder="Enter Time in Miliseconds"
+          />
+        </div>
+        <button type="button" class="submit-btn" onclick="btn()">
+          Set Alarm</button
+        ><br />
+        <label id="show" class="show"></label>
+      </form>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

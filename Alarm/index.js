@@ -1,0 +1,41 @@
+function myPromise(executor) {
+  this.then = function (myFun) {
+    onResolve = myFun;
+    return this;
+  };
+  this.catch = function (myFun) {
+    onReject = myFun;
+    return this;
+  };
+  function resolve(v) {
+    onResolve(v);
+  }
+  function reject(v) {
+    onReject(v);
+  }
+  executor(resolve, reject);
+}
+
+function btn() {
+  let userName = document.getElementById("uname").value;
+  let userAlarm = document.getElementById("alarm").value;
+  // console.log(userName, userAlarm);
+  CustomAlarm(userName, userAlarm)
+    .then((res) => console.log(res))
+    .catch((rej) => console.log(rej));
+}
+
+function CustomAlarm(n, a) {
+  return new myPromise((resolve, reject) =>
+    setTimeout(() => {
+      if (a % 1000 == 0) {
+        let result = (document.getElementById(
+          "show"
+        ).innerHTML = `Wakeup ${n}`);
+        resolve(result);
+      } else {
+        reject("Error! Please enter a valid milliseconds");
+      }
+    }, a)
+  );
+}
