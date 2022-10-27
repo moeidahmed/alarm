@@ -1,41 +1,31 @@
-function myPromise(executor) {
-  this.then = function (myFun) {
-    onResolve = myFun;
-    return this;
-  };
-  this.catch = function (myFun) {
-    onReject = myFun;
-    return this;
-  };
-  function resolve(v) {
-    onResolve(v);
-  }
-  function reject(v) {
-    onReject(v);
-  }
-  executor(resolve, reject);
-}
-
 function btn() {
   let userName = document.getElementById("uname").value;
   let userAlarm = document.getElementById("alarm").value;
-  // console.log(userName, userAlarm);
-  CustomAlarm(userName, userAlarm)
-    .then((res) => console.log(res))
-    .catch((rej) => console.log(rej));
+  const promise = CustomAlarm(userName, userAlarm);
+  console.log(promise);
+  promise
+    .then(function (val) {
+      console.log(val);
+    })
+    .catch(function (err) {
+      console.log(err.message);
+    });
 }
 
-function CustomAlarm(n, a) {
-  return new myPromise((resolve, reject) =>
-    setTimeout(() => {
-      if (a % 1000 == 0) {
+//Testing
+function CustomAlarm(a, b) {
+  let prom = new Promise((resolve, reject) => {
+    if (b % 1000 == 0) {
+      setTimeout(() => {
         let result = (document.getElementById(
           "show"
-        ).innerHTML = `Wakeup ${n}`);
+        ).innerHTML = `Wakeup ${a}`);
         resolve(result);
-      } else {
-        reject("Error! Please enter a valid milliseconds");
-      }
-    }, a)
-  );
+      }, b);
+    } else {
+      let err = new Error("You got an error");
+      reject(err);
+    }
+  });
+  return prom;
 }
