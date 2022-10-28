@@ -27,7 +27,7 @@ function btn() {
 }
 
 function CustomAlarm(n, a) {
-  return new myPromise((resolve, reject) => {
+  const promise = new myPromise((resolve, reject) => {
     setTimeout(() => {
       if (a % 1000 == 0) {
         let result = (document.getElementById(
@@ -40,4 +40,6 @@ function CustomAlarm(n, a) {
       }
     }, a);
   });
+  console.log(promise);
+  return promise;
 }
